@@ -162,7 +162,6 @@ contract Voting {
         for (uint i = 1; i <= totalContestants.current(); i++) {
             if (contestants[id][i].id == i) {
                 Contestants[index] = contestants[id][i];
-                // Calculate and store the number of votes for the contestant
                 uint votes = contestants[id][i].votes;
                 Contestants[index].votes = votes;
                 index++;
