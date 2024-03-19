@@ -1,6 +1,8 @@
 import * as React from "react"
 import Link from "next/link"
-import { UserButton } from "@clerk/nextjs";
+import { SignIn, UserButton } from "@clerk/nextjs";
+import { EnvelopeOpenIcon } from "@radix-ui/react-icons"
+import { Button } from "@/components/ui/button"
 
 import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
