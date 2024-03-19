@@ -1,7 +1,7 @@
 "use client"
 import "@/styles/globals.css"
 import { AnonAadhaarProvider } from "anon-aadhaar-react";
-
+import { ClerkProvider } from '@clerk/nextjs'
 import {
   ThirdwebProvider,
   metamaskWallet,
@@ -20,12 +20,9 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 function Component() {
-  const { contract, isLoading } = useContract("0xa777a9517C0761203C835974c494FA3f169fe441");
-  console.log(contract, isLoading);
-
   return (
-    <div className="flex flex-row items-center justify-center">
-    <GitHubButton href="https://github.com/AnuPlayz/anya" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star AnuPlayz/anya on GitHub">Star</GitHubButton>
+    <div className="flex flex-row items-center justify-center p-5">
+          <p className="flex items-center text-sm font-medium text-muted-foreground">PRAYATNA_4090e11952b94b5b8aac0d47c4187116</p>
     </div>
   );
 }
@@ -38,49 +35,51 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <ThirdwebProvider
-        activeChain="mumbai"
-        clientId="db6a42c09cffd69f9948764333016f18"
-        supportedWallets={[
-          metamaskWallet(),
-          coinbaseWallet({ recommended: true }),
-          walletConnect(),
-          localWallet(),
-          embeddedWallet({
-            auth: {
-              options: [
-                "email",
-                "google",
-                "apple",
-                "facebook",
-              ],
-            },
-          }),
-        ]}
-      >
-        <AnonAadhaarProvider _appId="db6a42c09cffd69f9948764333016f18">
-          <html lang="en" suppressHydrationWarning>
-            <head>
-              <title>Pixel Vote</title>
-              <link rel="icon" href="/logo.svg" />
-            </head>
-            <body
-              className={cn(
-                "min-h-screen bg-background font-sans antialiased",
-                fontSans.variable
-              )}
-            >
-              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <div className="relative flex min-h-screen flex-col">
-                  <SiteHeader />
-                  <div className="flex-1">{children}    <Component /></div>
-                </div>
-                <TailwindIndicator />
-              </ThemeProvider>
-            </body>
-          </html>
-        </AnonAadhaarProvider>
-      </ThirdwebProvider>
+      <ClerkProvider>
+        <ThirdwebProvider
+          activeChain="mumbai"
+          clientId="db6a42c09cffd69f9948764333016f18"
+          supportedWallets={[
+            metamaskWallet(),
+            coinbaseWallet({ recommended: true }),
+            walletConnect(),
+            localWallet(),
+            embeddedWallet({
+              auth: {
+                options: [
+                  "email",
+                  "google",
+                  "apple",
+                  "facebook",
+                ],
+              },
+            }),
+          ]}
+        >
+          <AnonAadhaarProvider _appId="db6a42c09cffd69f9948764333016f18">
+            <html lang="en" suppressHydrationWarning>
+              <head>
+                <title>Pixel Vote</title>
+                <link rel="icon" href="/logo.svg" />
+              </head>
+              <body
+                className={cn(
+                  "min-h-screen bg-background font-sans antialiased",
+                  fontSans.variable
+                )}
+              >
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                  <div className="relative flex min-h-screen flex-col">
+                    <SiteHeader />
+                    <div className="flex-1">{children}    <Component /></div>
+                  </div>
+                  <TailwindIndicator />
+                </ThemeProvider>
+              </body>
+            </html>
+          </AnonAadhaarProvider>
+        </ThirdwebProvider>
+      </ClerkProvider>
     </>
   )
 }
