@@ -56,12 +56,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
             }),
           ]}
         >
-          <AnonAadhaarProvider _appId="db6a42c09cffd69f9948764333016f18">
+          <AnonAadhaarProvider _useTestAadhaar={"true"}>
             <html lang="en" suppressHydrationWarning>
               <head>
                 <title>Pixel Vote</title>
                 <link rel="icon" href="/logo.svg" />
-              </head>
+              </head> 
               <body
                 className={cn(
                   "min-h-screen bg-background font-sans antialiased",
