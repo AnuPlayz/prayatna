@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Pixel Vote",
+  name: "Nexus Vote",
   description:
     "Beautifully designed blockchain based voting application.",
   mainNav: [
